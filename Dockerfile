@@ -1,0 +1,13 @@
+FROM openjdk:17 as build
+WORKDIR /app
+COPY . ./
+RUN microdnf install findutils
+RUN chmod +x gradlew
+RUN ./gradlew build -x test
+
+FROM openjdk:17-slim
+WORKDIR /app
+COPY --from=build /app/build/libs/dockerDemo17-0.0.1-SHAPSHOT.jar .
+CMD ["java","-jar","dockerDemo17-0.0.1-SHAPSHOT.jar"]
+EXPOSE 2025
+
