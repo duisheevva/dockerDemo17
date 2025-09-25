@@ -10,12 +10,12 @@ public class TestApi {
 
 
     @GetMapping("/hello")
-    public void hello(){
-        System.out.println("hello");
+    public String hello(){
+        return "hello Java 17";
     }
 
     @GetMapping("/bye")
-    public void bye(){
-        System.out.println("bye");
+    public String bye() {
+        return "bye";
     }
 }
